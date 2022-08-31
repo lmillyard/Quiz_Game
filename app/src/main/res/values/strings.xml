@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Quiz Game</string>
     <string name="time_with_placeholder">Time: %1$d seconds</string>
+    <string name="points_with_placeholder">Points: %1$d</string>
+    <string name="high_score_1_with_placeholder">High Score 1: %1$d</string>
+    <string name="high_score_2_with_placeholder">High Score 2: %1$d</string>
+    <string name="high_score_3_with_placeholder">High Score 3: %1$d</string>
+    <string name="startGameAgain">go again?</string>
 </resources>

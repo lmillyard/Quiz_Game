@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/standardAndroidPadding"
+    tools:context=".EndGameActivity"
+    android:background="@color/androidBackgroundColour"
+    >
+
+    <TextView
+        android:id="@+id/pointsTextView"
+        android:text="@string/points_with_placeholder"
+        android:textColor="@color/text"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/pointsTextView"
+        app:layout_constraintBottom_toTopOf="@id/resetButton"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/standardAndroidPadding"
+        android:layout_marginBottom="400dp"
+        >
+
+        <TextView
+            android:id="@+id/highScore_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high_score_1_with_placeholder"
+            style="@style/CustomHighScoreStyle"
+            app:layout_constraintTop_toBottomOf="@id/pointsTextView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+        />
+        <TextView
+            android:id="@+id/highScore_2"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/high_score_2_with_placeholder"
+            style="@style/CustomHighScoreStyle"
+            app:layout_constraintTop_toBottomOf="@id/highScore_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+        <TextView
+            android:id="@+id/highScore_3"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/high_score_3_with_placeholder"
+            style="@style/CustomHighScoreStyle"
+            app:layout_constraintTop_toBottomOf="@id/highScore_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            /></LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/newHighScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="20"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/pointsTextView"
+        app:layout_constraintLeft_toRightOf="@id/pointsTextView"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_light"
+        android:text="New High Score!"
+        />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/startGameAgain"
+        style="@style/CustomButtonStyle"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

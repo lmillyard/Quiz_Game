@@ -46,6 +46,18 @@ public class Question {
                 new Answer("15", false),
                 new Answer("79", true),
                 new Answer("34", false)));
+        list.add(new Question("What is the largest country by population?", 6,
+                new Answer("China", true),
+                new Answer("USA", false),
+                new Answer("India", false)));
+        list.add(new Question("Which former British colony was given back to China in 1997??", 8,
+                new Answer("Shanghai", false),
+                new Answer("Beijing", false),
+                new Answer("Hong Kong", true)));
+        list.add(new Question("What was Meta Platforms Inc formerly known as?", 2,
+                new Answer("Instagram", false),
+                new Answer("Facebook", true),
+                new Answer("TikTok", false)));
         return list;
     }
 }

@@ -2,6 +2,7 @@ package com.example.quizgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.quizgame.models.Answer;
 import com.example.quizgame.models.Question;
+import com.example.quizgame.util.Tags;
 
 import java.util.List;
 
@@ -25,27 +27,32 @@ public class MainActivity extends AppCompatActivity {
     private int questionIndex = 0;
     private int points = 0;
     private List<Question> allQuestions;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initViews();
 
+        displayQuestion(allQuestions.get(questionIndex));
+
+        startTimer();
+    }
+
+    private void initViews() {
         timeLeftTextView = findViewById(R.id.timeLeftTextView);
+        timeProgressBar = findViewById(R.id.timeProgressBar);
         questionTextView = findViewById(R.id.questionTextView);
         answerButton1 = findViewById(R.id.answerButton1);
         answerButton2 = findViewById(R.id.answerButton2);
         answerButton3 = findViewById(R.id.answerButton3);
         pointsTextView = findViewById(R.id.pointsTextView);
-
-        allQuestions = Question.getAllQuestions(); //Database.get for example Server.get
-        displayQuestion(allQuestions.get(questionIndex));
-        
-        startTimer();
+        allQuestions = Question.getAllQuestions();//Database.get for example Server.get
     }
 
     private void startTimer() {
-        CountDownTimer countDownTimer = new CountDownTimer(TOTAL_TIME, COUNT_DOWN_INTERVAL) {
+        countDownTimer = new CountDownTimer(TOTAL_TIME, COUNT_DOWN_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinish) {
                 int progress = (int) (millisUntilFinish * 100.0/TOTAL_TIME);
@@ -89,15 +96,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void checkAnswerCorrect(Answer answer, int point) {
+    private void checkAnswerCorrect(Answer answer, int points) {
         if (answer.isCorrect()) {
+            this.points += points;
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
         }
-
+        updatePoints();
         questionIndex++;
+        moveToNextQuestion();
 
+    }
+
+    private void updatePoints() {
+        pointsTextView.setText(getString(R.string.points_with_placeholder, points));
+    }
+
+    private void moveToNextQuestion() {
         if (questionIndex == allQuestions.size()) {
             gameOver();
         } else{
@@ -106,7 +122,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gameOver() {
+
         Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+        goToEndGameScreen();
+    }
+
+    private void goToEndGameScreen() {
+        countDownTimer.cancel();
+        Intent intent = new Intent(this, EndGameActivity.class);
+        intent.putExtra(Tags.POINTS, points);
+        startActivity(intent);
+        finish();
     }
 
 }
