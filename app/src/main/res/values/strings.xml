@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Quiz Game</string>
+    <string name="time_with_placeholder">Time: %1$d seconds</string>
+</resources>
